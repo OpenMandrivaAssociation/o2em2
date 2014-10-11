@@ -1,0 +1,79 @@
+--- o2em2-1.51/main.c.omv~	2014-10-11 15:11:19.009070130 +0200
++++ o2em2-1.51/main.c	2014-10-11 15:13:43.360162550 +0200
+@@ -342,25 +342,22 @@ int parse_option(char *attr, char *val)
+ 	if (strcasecmp(attr, "nolimit") == 0) {
+ 		app_data.limit = !(val[0] != '0');
+ 		return O2EM_SUCCESS;
+-	}
+-	if (strcasecmp(attr, "showfps") == 0) {
++	} else if (strcasecmp(attr, "showfps") == 0) {
+ 		app_data.show_fps = (val[0] != '0');
+ 		#ifdef __O2EM_DEBUG__
+ 		printf("On passe show_fps a %d\n", app_data.show_fps);
+ 		#endif
+ 		return O2EM_SUCCESS;
+-	}
+-	if (strcasecmp(attr, "nosound") == 0) {
++	} else if (strcasecmp(attr, "nosound") == 0) {
+ 		app_data.sound_en = !(val[0] != '0');
+ 		return O2EM_SUCCESS;
+-	}
+-	if (strcasecmp(attr, "novoice") == 0) {
++	} else if (strcasecmp(attr, "novoice") == 0) {
+ 		app_data.voice = !(val[0] != '0');
+ 		return O2EM_SUCCESS;
+ 	}
+ 	/* TODO parameter handleevbll */
+ 	/* TODO parameter handleevbl */
+-	if (strcasecmp(attr, "filter") == 0) {
++	else if (strcasecmp(attr, "filter") == 0) {
+ 		app_data.filter = (val[0] != '0');
+ 	} else if (strcasecmp(attr, "debug") == 0) {
+ 		app_data.debug = (val[0]!='0');
+@@ -421,7 +418,7 @@ int parse_option(char *attr, char *val)
+ 			set_joykeys(sn, codes[0], codes[1], codes[2], codes[3], codes[4]);
+ 		}
+ 	}
+-	if (strcmp(attr, "s0") == 0) {
++	else if (strcmp(attr, "s0") == 0) {
+ 		strupr(val);
+ 		nk = 0;
+ 		p = strtok(val, ",");
+@@ -453,8 +450,7 @@ int parse_option(char *attr, char *val)
+ 		}
+ 		set_systemkeys(codes[0], codes[1], codes[2], codes[3], codes[4], codes[5], codes[6], codes[7],codes[8],codes[9],codes[10],codes[11]);
+ 
+-	}
+-	if (strcasecmp(attr, "speed") == 0) {
++	} else if (strcasecmp(attr, "speed") == 0) {
+ 		t = -1;
+ 		sscanf(val,"%d",&t);
+ 		if ((t > 0) && (t <= 10000))
+@@ -502,14 +498,11 @@ int parse_option(char *attr, char *val)
+ 		strcpy(scshot, val);
+ 	} else if (strcasecmp(attr, "savefile") == 0) {
+ 		strcpy(app_data.statefile, val);
+-	}
+-	if (strcasecmp(attr, "biosdir") == 0) {
++	} else if (strcasecmp(attr, "biosdir") == 0) {
+ 		strcpy(app_data.biosdir, val);
+-	}
+-	if (strcasecmp(attr, "bios") == 0) {
++	} else if (strcasecmp(attr, "bios") == 0) {
+ 		strcpy(app_data.bios_filename, val);
+-	}
+-	if (!strcmp(attr, "romdir")) {
++	} else if (!strcmp(attr, "romdir")) {
+ 		strcpy(app_data.romdir, val);
+ 	} else if (!strcmp(attr, "help")) {
+ 		helpflag = 1;
+@@ -521,8 +514,7 @@ int parse_option(char *attr, char *val)
+ 		app_data.exrom = (val[0]!='0');
+ 	} else if (!strcmp(attr, "3k")) {
+ 		app_data.three_k = (val[0]!='0');
+-	}
+-	if (strcasecmp(attr, "g7400") == 0) {
++	} else if (strcasecmp(attr, "g7400") == 0) {
+ 		app_data.force_bios = BIOS_G7400;
+ 		printf("Setting BIOS to G7400\n");
+ 	} else if (!strcmp(attr, "c52")) {
