@@ -18,7 +18,7 @@ O2em2 is a fork of the dead o2em.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 touch debug.h
 %configure
 
